@@ -1,0 +1,44 @@
+<script>
+	// a class representing a dependency
+	// exposing it on window is necessary for testing
+	window.Dep = class Dep {
+		// Implement this!
+		constructor() {
+			this.subscriber = new Set();
+		}
+		notify() {
+			console.log("Notify function");
+			this.subscriber.forEach((fun) => fun());
+		}
+		depend() {
+			console.log("Depend Function");
+			if (wrapper) {
+				this.subscriber.add(wrapper);
+			}
+		}
+	};
+
+	let wrapper;
+	let autorun = (update) => {
+		function wrappedUpdate() {
+			wrapper = wrappedUpdate;
+			update();
+			wrapper = null;
+		}
+		wrappedUpdate();
+	};
+
+	// const dep = new Dep();
+	// autorun(() => {
+	// 	dep.depend();
+	// 	console.log("updated1");
+	// });
+	// autorun(() => {
+	// 	dep.depend();
+	// 	console.log("updated2");
+	// });
+	// autorun(() => {
+	// 	console.log("no depend");
+	// });
+	// dep.notify();
+</script>

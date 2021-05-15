@@ -1,0 +1,18 @@
+{
+  "name": "vue-advanced-workshop",
+  "author": "Evan You",
+  "description": "repo for Vue advanced workshop",
+  "scripts": {
+    "test": "jest --env node",
+    "watch": "jest --env node --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shreyans13/vue-advanced-workshop.gits"
+  },
+  "dependencies": {
+    "jest": "^21.0.1",
+    "jsdom": "^11.2.0",
+    "vue": "^2.4.2"
+  }
+}
