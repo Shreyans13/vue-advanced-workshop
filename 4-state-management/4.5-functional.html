@@ -5,6 +5,24 @@
 <script>
 function createApp ({ el, model, view, actions }) {
   // Implement this!
+
+  const wrapppedActions = {}
+
+  Object.keys(actions).forEach(key => {
+    const originalAction = actions[key]
+    wrapppedActions[key] = () => {
+      const nextModel = originalAction(vm.model) 
+      vm.model = nextModel
+    }
+  })
+
+  const vm = new Vue({
+    el,
+    data: { model },
+    render(h) {
+      return view(h, this.model, wrapppedActions)
+    }
+  })
 }
 
 // voila
