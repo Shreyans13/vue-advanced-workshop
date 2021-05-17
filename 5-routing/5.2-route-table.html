@@ -1,4 +1,4 @@
-<script src="../node_modules/vue/dist/vue.js"></script>
+ <script src="../node_modules/vue/dist/vue.js"></script>
 
 <div id="app">
   <!-- render main view here -->
@@ -17,14 +17,28 @@ const NotFound = { template: `<div>not found!</div>` }
 
 const routeTable = {
   // Implement this!
+  'foo' : Foo,
+  'bar' : Bar
 }
 
 window.addEventListener('hashchange', () => {
+    app.url = window.location.hash.slice(1);
   // Implement this!
 })
 
 const app = new Vue({
   el: '#app',
+  data: {
+    url : window.location.hash.slice(1)
+  },
+  render(h) {
+    return h('div', [
+      h(routeTable[this.url] || NotFound),
+      h('a', { attrs: { href : '#foo' }}, 'foo'),
+      ' ',
+      h('a', { attrs: { href : '#bar' }}, 'bar')
+    ])
+  }
   // Implement this!
 })
 </script>
